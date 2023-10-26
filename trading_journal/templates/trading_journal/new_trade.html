@@ -1,0 +1,39 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE HTML>
+<html lang ='en'>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scaled=1, user-scalable=no"/>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+        <link rel="stylesheet", href="{% static "new_trade.css" %}">
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="http://127.0.0.1:8000/home/"><img src="{% static 'logo.png'%}" class="logo"></a>
+            <ul>
+                <li><a href="http://127.0.0.1:8000/new_trade/">Add Trade</a></li>
+                <li><a href="http://127.0.0.1:8000/trades/">Trades</a></li>
+                {%if request.user.is_authenticated %}
+                <span>Hi {{ request.user.username | title }}</span>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {%else%}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {%endif%}
+            </ul>
+        </div>
+        <div class="heading">
+            <h1 id="head">Add Trade</h1>
+            </div>
+     <form method='post' enctype="multipart/form-data">
+        <div id ="content1">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button><h3>Submit</h3></button>
+            </div>
+     </form>
+    </body>
+        
+</html>

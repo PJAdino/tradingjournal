@@ -1,0 +1,28 @@
+{% load static %}
+{% load widget_tweaks %}<!doctype html>
+<html lang='en'>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scaled=1, user-scalable=no"/>
+        <link rel="stylesheet", href="{% static "reg.css" %}">
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="http://127.0.0.1:8000/home/"><img src="{% static 'logo.png'%}" class="logo"></a>
+           
+        </div>
+        
+        <div class="registration">
+        <h2>Login</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button>Login</button>
+            <p>Don't have an account? <a href="{%url 'register' %}">Register</a></p>
+        </form>
+    </div>
+    </body>
+</html>

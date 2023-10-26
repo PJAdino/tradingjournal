@@ -1,0 +1,102 @@
+{% load static%}
+<!doctype html>
+<html lang="en">
+    <style>
+        .table{
+            border-collapse: collapse;
+            font-family: sans-serif;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.9em;
+            min-width: 400px;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            background-color: #ffffff
+        }
+
+        .table thead tr{
+            background-color: #009688;
+            color: white;
+            text-align: left;
+            font-weight: bold;
+        
+        }
+
+        .table th,
+        .table td{
+            padding: 12px 15px;
+        }
+        
+        .table tbody tr{
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table tbody tr:nth-of-type(even){
+            background-color: #f3f3f3;
+            font-weight: bold;
+            color: #009688;
+        }
+
+        .table tbody tr:last-of-type{
+            border-bottom: 2px solid #009688;
+        }
+
+       
+        
+
+    </style>
+    <head>
+        <link rel="stylesheet", href="{% static "style.css" %}">
+    </head>
+    <body>
+        <div class='banner'>
+            <div class="navbar">
+                <a href="http://127.0.0.1:8000/home/"><img src="{% static 'logo.png'%}" class="logo"></a>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/new_trade/">Add Trade</a></li>
+                    <li><a href="http://127.0.0.1:8000/trades/">Trades</a></li>
+                    {%if request.user.is_authenticated %}
+                    <span>Hi {{ request.user.username | title }}</span>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {%else%}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {%endif%}
+                </ul>
+            </div>
+        <div >
+            <table id="CurrencyPair" class='table'>
+                <thead>
+                    <tr>
+                        <th>Pair</th>
+                        <th>Date</th>
+                        <th>Opening price</th>
+                        <th>Closing price</th>
+                        <th>Take Profit</th>
+                        <th>stop loss</th>
+                        <th>Lot Size</th>
+                        <th>Screenshort</th>
+                        <th>Result</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trade in trades%}
+                    <tr>
+                        <td>{{trade.pair}}</td>
+                        <td>{{trade.date_added}}</td>
+                        <td>{{trade.opening_price}}</td>
+                        <td>{{trade.closing_price}}</td>
+                        <td>{{trade.take_profit}}</td>
+                        <td>{{trade.stop_loss}}</td>
+                        <td>{{trade.lot_size}}</td>
+                        <td>{{trade.trade_screenshort}}</td>
+                        <td>{{trade.result}}</td>  
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </body>
+</html>
