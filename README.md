@@ -1,5 +1,9 @@
-# tradingjournal
-A simpe Trading journal built with django
+# Trading Journal 
+
+Its a robust web application designed for traders who seek to streamline their trading journey. Built with the powerful Django framework, it offers a user-friendly interface where traders can effortlessly input their trade details and monitor their ongoing trading activities. Whether you’re a seasoned trader or just starting out, The trading journal provides a centralized platform to track your progress.
+
+
+New topic
 ![tradespage](https://github.com/PJAdino/tradingjournal/assets/148992494/3c980d5a-085a-4530-a93d-e5d720140056)
 
 # Built with
